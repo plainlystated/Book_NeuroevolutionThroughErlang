@@ -19,6 +19,10 @@ prep(ExoSelf_PId) ->
 	end.
 %gen/2 is executed by the exoself. The function spawns prep/1 process, and awaits the name of the scape from the exoself. Each scape is a separate and independent process, a self contained system that was developed to interface with the sensors and actuators from which its name was extracted. The name of the scape is the name of its main process loop.
 
+and_sim(ExoSelf_PId) ->
+	AND = [{[-1,-1],[-1]},{[1,-1],[-1]},{[-1,1],[-1]},{[1,1],[1]}],
+	xor_sim(ExoSelf_PId,{AND,AND},0).
+
 xor_sim(ExoSelf_PId)->
 	XOR = [{[-1,-1],[-1]},{[1,-1],[1]},{[-1,1],[1]},{[1,1],[-1]}],
 	xor_sim(ExoSelf_PId,{XOR,XOR},0).
