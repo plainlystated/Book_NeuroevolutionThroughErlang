@@ -41,6 +41,9 @@ prep(FileName,Genotype)->
 loop(FileName,Genotype,IdsNPIds,Cx_PId,SPIds,NPIds,APIds,ScapePIds,HighestFitness,EvalAcc,CycleAcc,TimeAcc,Attempt)->
 	receive
 		{Cx_PId,evaluation_completed,Fitness,Cycles,Time}->
+      Neuron_IdsNWeights = get_backup(NPIds,[]),
+      update_genotype(IdsNPIds,Genotype,Neuron_IdsNWeights),
+      graph:draw(Genotype, EvalAcc, Fitness, EvalAcc),
 			{U_HighestFitness,U_Attempt}=case Fitness > HighestFitness of
 				true ->
 					[NPId ! {self(),weight_backup} || NPId <- NPIds],
