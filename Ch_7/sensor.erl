@@ -52,3 +52,7 @@ xor_GetInput(VL,Scape)->
 	end.
 %xor_GetInput/2 contacts the XOR simulator and requests the sensory vector, which in this case should be a vector of length 2. The sensor checks that the incoming sensory signal, the percept, is indeed of length 2. If the vector length differs, then this is printed to the console and a dummy vector of appropriate length is constructed and used. This prevents unnecessary crashes in the case of errors, and gives the researcher a chance to fix the error and hotswap the code.
 
+prompt_user(_VL, _Scape) ->
+  {ok, N1} = io:fread("First number (0 or 1): ", "~d"),
+  {ok, N2} = io:fread("Second number (0 or 1): ", "~d"),
+  lists:flatten([N1, N2]).

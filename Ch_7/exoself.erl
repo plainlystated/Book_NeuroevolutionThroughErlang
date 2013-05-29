@@ -108,6 +108,7 @@ loop(FileName,Genotype,IdsNPIds,Cx_PId,SPIds,NPIds,APIds,ScapePIds,HighestFitnes
 		SPId = ets:lookup_element(IdsNPIds,SId,2),
 		Cx_PId = ets:lookup_element(IdsNPIds,R#sensor.cx_id,2),
 		SName = R#sensor.name,
+    %SName = prompt_user,
 		Fanout_Ids = R#sensor.fanout_ids,
 		Fanout_PIds = [ets:lookup_element(IdsNPIds,Id,2) || Id <- Fanout_Ids],
 		Scape=case R#sensor.scape of
@@ -123,6 +124,7 @@ loop(FileName,Genotype,IdsNPIds,Cx_PId,SPIds,NPIds,APIds,ScapePIds,HighestFitnes
 		APId = ets:lookup_element(IdsNPIds,AId,2),
 		Cx_PId = ets:lookup_element(IdsNPIds,R#actuator.cx_id,2),
 		AName = R#actuator.name,
+		%AName = pts,
 		Fanin_Ids = R#actuator.fanin_ids,
 		Fanin_PIds = [ets:lookup_element(IdsNPIds,Id,2) || Id <- Fanin_Ids],
 		Scape=case R#actuator.scape of
